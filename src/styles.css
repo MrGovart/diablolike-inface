@@ -1,0 +1,333 @@
+:root {
+  --main-back: #2e2e2e;
+  --window-back: #171717;
+  --secondary-window-back: #1e1e1e;
+  --secondary-window-back-low-opacity: rgba(30, 30, 30, 0.75);
+  --positive-effect-color: #fefdc7;
+  --main-outer-shadow: 0px 0px 9px 1px rgba(0, 0, 0, 0.5);
+  --main-inner-shadow: 0px 0px 9px 1px rgba(0, 0, 0, 0.5) inset;
+  --character-inner-shadow: 0px 4px 18px 10px rgba(0, 0, 0, 0.25) inset;
+  --rare-color: linear-gradient(
+    0deg,
+    rgba(102, 102, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+html,
+body {
+  position: relative;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: var(--main-back);
+  user-select: none;
+  color: white;
+}
+
+button {
+  background: black;
+  background-color: black;
+  color: white;
+}
+
+input {
+  background: black;
+  color: white;
+}
+
+select {
+  background: black;
+  color: white;
+}
+
+.App {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.Board {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.MainFrame {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 600px 1fr;
+  grid-template-rows: repeat(2, 1fr);
+  justify-content: center;
+  gap: 0px 0px;
+  grid-template-areas:
+    "Stats Character Menu"
+    "Stats Inventory Menu";
+}
+
+.StatBoard {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(360deg, black, transparent);
+}
+
+.hand {
+  pointer-events: none;
+  top: -25px;
+  left: -25px;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border: 2px dashed red;
+}
+
+.Hand {
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  position: absolute;
+}
+
+.itemInHand {
+  top: -25px;
+  left: -25px;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border: 2px dashed red;
+  z-index: 1000;
+}
+
+.Tetragon {
+  color: white;
+  user-select: none;
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: rgba(255, 255, 255, 0);
+  transition: background 0.5s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Tetragon:hover .tetragonInner {
+  opacity: 0;
+}
+
+.Tetragon[highlighten="false"] {
+  background: rgba(138, 44, 30, 0.5) !important;
+}
+
+.Tetragon[highlighten="true"] {
+  background: rgba(170, 144, 48, 0.5) !important;
+}
+
+.tetragonInner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  transition: opacity 0.4s;
+}
+
+.Tetragon::before {
+  content: "";
+  position: absolute;
+  background: var(--second-background);
+  width: 100%;
+  height: 100%;
+  opacity: 0.3;
+}
+
+.modal-container {
+  position: absolute;
+  background: black;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+}
+
+.info-container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 999;
+}
+
+.Info {
+  position: absolute;
+  padding: 10px;
+  min-width: 200px;
+  background: var(--secondary-window-back-low-opacity);
+  box-shadow: var(--main-outer-shadow);
+  text-align: center;
+  pointer-events: none;
+  left: 50%;
+  white-space: pre-line;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+.Info h1 {
+  font-size: 1.1em;
+}
+
+.Info h2 {
+  font-size: 1em;
+}
+
+.Info p {
+  font-size: 1em;
+  margin: 5px;
+}
+
+.inv1 {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.slotInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  box-shadow: var(--main-inner-shadow);
+}
+
+.Slot[empty="true"][hovered="false"] .slotInner {
+  background: rgba(138, 44, 30, 0.5) !important;
+}
+
+.Slot[empty="true"][hovered="true"] .slotInner {
+  background: rgb(30, 66, 30);
+}
+
+/*.Slot[empty="false"][hovered="true"] .slotInner {
+  background: rgb(119, 95, 43);
+}*/
+
+.Slot[empty="false"][hovered="true"] .Tetragon .tetragonInner {
+  opacity: 0;
+}
+
+.Slot[empty="false"][hovered="false"] .Tetragon .tetragonInner {
+  opacity: 0;
+}
+
+.Slot {
+  user-select: none;
+  background: rgb(23, 23, 23);
+  box-sizing: border-box;
+}
+
+.corner {
+  position: absolute;
+  width: 10%;
+  height: 10%;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.side {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.top {
+  top: 0;
+  height: 10px;
+}
+
+.right {
+  right: 0;
+  width: 10px;
+}
+
+.bottom {
+  bottom: 0;
+  height: 10px;
+}
+
+.left {
+  left: 0;
+  width: 10px;
+}
+
+#root {
+  height: 100%;
+}
+
+.Image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Image img {
+  width: 100%;
+  max-height: 100%;
+  object-fit: scale-down;
+}
+
+.img-transformer {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+}
+
+.TrashContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  z-index: 101;
+}
+
+.TrashContainer[data-open="false"] {
+  display: none;
+}
+
+.TrashContainer[data-open="true"] {
+  display: block;
+}
+
+.TrashContainer .Tetragon {
+  position: relative;
+}
+
+.Trash {
+  display: flex;
+}
+
+.square-button {
+  width: 50px;
+  height: 50px;
+}
+
+@media only screen and (max-width: 640px) {
+  .MainFrame {
+    grid-template-columns: 0fr 1fr 0fr;
+  }
+}

@@ -1,0 +1,144 @@
+.Character {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  height: 500px;
+  min-width: 340px;
+  width: 100%;
+  justify-content: center;
+  align-content: flex-start;
+  grid-area: Character;
+  justify-self: center;
+}
+
+.char-name {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 8px;
+}
+
+.char-name input {
+  border: none;
+  background: unset;
+  font-size: 18px;
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 300;
+  text-align: center;
+  caret-color: transparent;
+  color: white;
+  transition: color 0.4s;
+}
+
+.char-name input:hover {
+  color: wheat;
+}
+
+.char-name input:focus {
+  text-decoration: underline;
+  text-decoration-thickness: 0.5px;
+
+  color: wheat;
+  border: none;
+  outline: none;
+}
+
+.char-name input::selection {
+  background: var(--secondary-window-back);
+  color: white;
+}
+
+.char-name:before {
+  transition: color 0.4s;
+  color: var(--pseudo-color);
+  content: "\25C6";
+  margin-right: 10px;
+  font-size: 9px;
+}
+
+.char-name:after {
+  transition: color 0.4s;
+  color: var(--pseudo-color);
+  content: "\25C6";
+  margin-left: 10px;
+  font-size: 9px;
+}
+
+.char-main-container {
+  display: flex;
+  position: relative;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  height: calc(100% - 40px);
+}
+
+.char-img {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+}
+
+.char-img-overlay {
+  position: absolute;
+  mix-blend-mode: screen;
+  object-position: bottom;
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+  opacity: 0.3;
+}
+
+.char-img:after {
+  box-shadow: var(--character-inner-shadow);
+  content: "";
+  display: block;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.char-img-main {
+  width: inherit;
+  height: inherit;
+  object-position: center;
+  object-fit: cover;
+}
+
+.slot-5 {
+  flex: 0 1;
+  margin: 20px;
+  display: grid;
+}
+
+.slot-5 .Slot {
+  position: relative;
+  justify-self: center;
+  align-self: center;
+  width: var(--default-slot-5-size);
+  height: var(--default-slot-5-size);
+}
+
+.Character .Tetragon {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* smaller than SD */
+
+.slot-5.small {
+  margin: 10px;
+}
+
+.slot-5 .Slot.small {
+  width: var(--sd-slot-5-size);
+  height: var(--sd-slot-5-size);
+}
+
+.Character.small {
+  height: 400px;
+}

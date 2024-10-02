@@ -1,0 +1,81 @@
+.Menu {
+  position: relative;
+  background: var(--window-back);
+  grid-area: Menu;
+  margin: 20px;
+  width: 245px;
+  min-width: 245px;
+  height: calc(100% - 40px);
+  justify-self: left;
+}
+
+.Menu.hidden {
+  position: absolute;
+  z-index: 99;
+  left: calc(100% - 20px);
+  transform: translate(0);
+  transition: left 800ms, transform 800ms;
+}
+
+.Menu.shown {
+  transform: translate(calc(-100% - 20px));
+}
+
+.Menu.shown .menu-caller {
+  transform: translate(0);
+}
+
+.menu-caller {
+  display: none;
+  width: 40px;
+  height: 40px;
+  background: var(--secondary-window-back);
+  transform: translate(-100%);
+  position: fixed;
+  z-index: 99;
+}
+
+.Menu.hidden .menu-caller {
+  display: flex;
+}
+
+.forgeitem-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.forgeitem-preview {
+  width: 200px;
+  height: 200px;
+  margin: 20px;
+  background: var(--secondary-window-back);
+}
+
+.forgeitem-preview img {
+  object-fit: contain;
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.forgeitem-imageinput-container {
+  height: fit-content;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.forgeitem-imageinput {
+  position: relative;
+  height: 100%;
+}
+
+.forgeitem-imageinput-container input {
+  opacity: 0;
+  position: absolute;
+  width: 80%;
+}

@@ -1,0 +1,82 @@
+.Inventory {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  grid-area: Inventory;
+  justify-self: center;
+  margin-bottom: 20px;
+}
+
+.InvContainer {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.inv_window {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.InvScroller {
+  width: 100%;
+  height: 50px;
+  position: relative;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.scroller-track {
+  width: 150px;
+  height: 50px;
+  background: var(--secondary-window-back);
+}
+
+.scroller-thumb {
+  position: relative;
+  width: 20px;
+  height: 100%;
+  background: var(--window-back);
+}
+
+.scroller-underlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.Slotmatrix {
+  position: absolute;
+  display: grid;
+}
+
+.Slotmatrix .Slot {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  outline: 1px solid rgb(30, 30, 30);
+}
+
+.Slotmatrix .Slot .slotInner {
+  box-shadow: none;
+}
+
+.Slotmatrix .Slot .Tetragon {
+  margin: 0 !important;
+}
+
+@media only screen and (max-width: 640px) {
+  .InvContainer {
+    width: calc(100% - 40px);
+  }
+}
