@@ -10,10 +10,10 @@ import {
   useScreenSize,
 } from "./index.js";
 import { systemData } from "./system_data.js";
-import "./public/styles/character.css";
-import "./public/styles/inventory.css";
-import "./public/styles/stats.css";
-import "./public/styles/menu.css";
+import "./styles/character.css";
+import "./styles/inventory.css";
+import "./styles/stats.css";
+import "./styles/menu.css";
 import { ItemObj, ItemCore, newItemObj } from "./classes.js";
 
 export default function MainFrame(props) {
@@ -189,7 +189,7 @@ function Character(props) {
             alt="Sparks in front of character"
           ></img>
         </div>
-        <div className="slot-5">{renderSlots(5)}</div>
+        <div className={sd ? "slot-5 small" : "slot-5"}>{renderSlots(5)}</div>
       </div>
     </div>
   );
