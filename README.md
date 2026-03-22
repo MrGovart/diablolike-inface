@@ -33,7 +33,7 @@ npm install
 Run with
 
 ```
-npm start
+npm run start
 ```
 
 The app will be availiable at ```localhost:3000```
